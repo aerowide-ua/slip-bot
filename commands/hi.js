@@ -14,8 +14,9 @@ export default {
         "helloooooo",
         "bored",
         ":3",
-        "gm"
+        "gm",
+        "hiiiiiiiiiiiiiiiiiiii"
     ]
-    send(responses[Math.floor(Math.random() * responses.length)]);
+    send(responses[rand(responses.length)]);
   }
 };

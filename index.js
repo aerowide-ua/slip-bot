@@ -3,7 +3,7 @@ import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 
-const PREFIX = ':33'; // Define prefix here (since commands.js is gone)
+const PREFIX = ':33';
 const commandsMap = new Map();
 
 // Recursively load commands from folder
@@ -12,7 +12,7 @@ async function loadCommands(dir) {
   for (const file of files) {
     const fullPath = path.join(dir, file);
     if (fs.statSync(fullPath).isDirectory()) {
-      await loadCommands(fullPath); // <-- add await here for recursion
+      await loadCommands(fullPath);
     } else if (file.endsWith('.js')) {
       const cmd = (await import(fullPath)).default;
       commandsMap.set(cmd.name, cmd);
@@ -21,7 +21,7 @@ async function loadCommands(dir) {
 }
 
 // Load commands dynamically
-await loadCommands(path.resolve('./commands')); // or './commands' if in root
+await loadCommands(path.resolve('./commands'));
 
 const client = new Client({
   intents: [
@@ -40,7 +40,7 @@ client.on(Events.MessageCreate, async (message) => {
   if (message.author.bot || !message.content.startsWith(PREFIX)) return;
 
   const [name, ...args] = message.content.slice(PREFIX.length).trim().split(/\s+/);
-  const cmd = commandsMap.get(name.toLowerCase()); // ✅ FIX HERE
+  const cmd = commandsMap.get(name.toLowerCase());
   if (!cmd) return;
 
   try {
@@ -54,7 +54,7 @@ client.on(Events.MessageCreate, async (message) => {
 // Handle slash commands
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
-  const cmd = commandsMap.get(interaction.commandName); // ✅ FIX HERE
+  const cmd = commandsMap.get(interaction.commandName);
   if (!cmd) return;
 
   try {
@@ -62,9 +62,9 @@ client.on(Events.InteractionCreate, async (interaction) => {
   } catch (err) {
     console.error(err);
     if (interaction.deferred || interaction.replied) {
-      await interaction.editReply('Something went wrong.');
+      await interaction.editReply('ough.');
     } else {
-      await interaction.reply({ content: 'Something went wrong.', ephemeral: true });
+      await interaction.reply({ content: 'ough.', ephemeral: true });
     }
   }
 });
