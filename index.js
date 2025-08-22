@@ -1,19 +1,46 @@
 import { Client, GatewayIntentBits, Events } from 'discord.js';
 import 'dotenv/config';
-import { PREFIX, commands } from './commands.js';
+import fs from 'fs';
+import path from 'path';
 
-const client = new Client({ intents: [
+const PREFIX = ':33'; // Define prefix here (since commands.js is gone)
+const commandsMap = new Map();
+
+// Recursively load commands from folder
+async function loadCommands(dir) {
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    const fullPath = path.join(dir, file);
+    if (fs.statSync(fullPath).isDirectory()) {
+      await loadCommands(fullPath); // <-- add await here for recursion
+    } else if (file.endsWith('.js')) {
+      const cmd = (await import(fullPath)).default;
+      commandsMap.set(cmd.name, cmd);
+    }
+  }
+}
+
+// Load commands dynamically
+await loadCommands(path.resolve('./commands')); // or './commands' if in root
+
+const client = new Client({
+  intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent ]});
+    GatewayIntentBits.MessageContent
+  ]
+});
 
-client.once(Events.ClientReady, (c) => { console.log(`Logged in as ${c.user.tag}`); });
+client.once(Events.ClientReady, (c) => {
+  console.log(`✅ Logged in as ${c.user.tag}`);
+});
 
+// Handle text commands
 client.on(Events.MessageCreate, async (message) => {
   if (message.author.bot || !message.content.startsWith(PREFIX)) return;
 
   const [name, ...args] = message.content.slice(PREFIX.length).trim().split(/\s+/);
-  const cmd = commands[name.toLowerCase()];
+  const cmd = commandsMap.get(name.toLowerCase()); // ✅ FIX HERE
   if (!cmd) return;
 
   try {
@@ -21,11 +48,13 @@ client.on(Events.MessageCreate, async (message) => {
   } catch (err) {
     console.error(err);
     await message.reply('Something went wrong.');
-  }});
+  }
+});
 
+// Handle slash commands
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
-  const cmd = commands[interaction.commandName];
+  const cmd = commandsMap.get(interaction.commandName); // ✅ FIX HERE
   if (!cmd) return;
 
   try {
@@ -41,3 +70,4 @@ client.on(Events.InteractionCreate, async (interaction) => {
 });
 
 client.login(process.env.TOKEN);
+

@@ -11,19 +11,6 @@ export const PREFIX = ':33';
  *   { type: 'slash', interaction }  or  { type: 'text', message, args }
  */
 export const commands = {
-  ping: {
-    description: 'ping',
-    async run(ctx) {
-      const send = async (msg) =>
-        ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.reply(msg);
-
-      const ws = Math.round(
-        ctx.type === 'slash' ? ctx.interaction.client.ws.ping : ctx.message.client.ws.ping
-      );
-      await send(`wha huh 
--# ${ws}ms`);
-    }
-  },
 
   echo: {
     description: 'my talking slip',
