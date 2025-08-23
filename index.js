@@ -1,9 +1,9 @@
-import { Client, GatewayIntentBits, Events } from 'discord.js';
+import { Client, GatewayIntentBits, Events, ActivityType } from 'discord.js';
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 
-const PREFIX = ':33';
+const PREFIX = ':3';
 const commandsMap = new Map();
 
 // Recursively load commands from folder
@@ -32,9 +32,6 @@ const client = new Client({
   ]
 });
 
-client.once(Events.ClientReady, (c) => {
-  console.log(`slip initiated: ${c.user.tag}`);
-});
 
 // Handle text commands
 client.on(Events.MessageCreate, async (message) => {
@@ -69,6 +66,12 @@ client.on(Events.InteractionCreate, async (interaction) => {
     }
   }
 });
+
+client.once(Events.ClientReady, (c) => {
+  console.log(`slip initiated: ${c.user.tag}`);
+  client.user.setActivity('annual slip olympics', { type: 5 })
+});
+
 
 
 client.login(process.env.TOKEN);

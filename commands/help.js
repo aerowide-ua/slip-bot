@@ -1,4 +1,4 @@
-import {rand} from '../extras.js'
+
 import { EmbedBuilder } from 'discord.js'
 
 export default {
@@ -12,10 +12,11 @@ export default {
     const embed = new EmbedBuilder()
             .setColor("#8989ff")
             .setTitle("help")
-            .setDescription("commands here prob")
+            .setDescription("commands here prob (prefix is ``:3``")
             .addFields({name: "silly", 
-                value: "``:33 help`` - this\n``:33 ping`` - pong\n``:33 hi`` - bored"+
-                "\n``:33 repeat [text]`` - self-explainatory\n``:33 slip`` - slip!\n``:33 math [math]`` - :nerd:"
+                value: "``help`` - this\n``ping`` - pong\n``hi`` - bored"+
+                "\n``repeat [text]`` - self-explainatory\n``slip`` - slip!\n``math [math]`` - :nerd:\n``meow`` - meowww (in vc)"+
+                "\n``number [numbr]`` - random\n``opinion (text)`` - yeagh\n``explode [text]`` - :boom:\n``oh`` - oh"
             })
             .setFooter({text: "slip technologies corp 2025-2025"})
     send({embeds: [embed]});
