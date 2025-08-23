@@ -28,12 +28,12 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 (async () => {
   try {
-    console.log(`Deploying ${slashCommands.length} slash commands...`);
+    console.log(`deploying ${slashCommands.length} sliplings...`);
     await rest.put(
       Routes.applicationGuildCommands(process.env.APP, process.env.GUILD),
       { body: slashCommands }
     );
-    console.log('✓ Successfully registered slash commands');
+    console.log('✓ slip step 1 completed');
   } catch (error) {
     console.error(error);
   }

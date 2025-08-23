@@ -1,1 +1,1 @@
-export function rand(num) {return Math.floor(Math.random() * num)}
+export function rand(list) {return list[Math.floor(Math.random() * list.length)]}

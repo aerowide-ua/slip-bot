@@ -17,6 +17,6 @@ export default {
         "gm",
         "hiiiiiiiiiiiiiiiiiiii"
     ]
-    send(responses[rand(responses.length)]);
+    send(rand(responses));
   }
 };

@@ -1,14 +1,14 @@
 export default {
-  name: 'echo',
+  name: 'repeat',
   description: 'hi hello',
 
   slashData: {
-    name: 'echo',
-    description: 'Repeats your message.',
+    name: 'repeat',
+    description: 'yea',
     options: [
       {
         name: 'text',
-        description: 'What should I repeat?',
+        description: 'text here cro',
         type: 3, // STRING
         required: true
       }
@@ -18,14 +18,14 @@ export default {
   async run(ctx) {
     if (ctx.type === 'text') {
       const content = ctx.args.join(' ');
-      if (!content) return ctx.message.reply('i need text cro');
-      await ctx.message.channel.send(content);
+      if (!content || content.length > 255) return ctx.message.reply('yeaaa so like umm no');
+      await ctx.message.channel.send({ content:content, allowedMentions: { parse: [] }} );
     }
 
     if (ctx.type === 'slash') {
       // Slash command context
       const content = ctx.interaction.options.getString('text');
-      await ctx.interaction.reply(content);
+      await ctx.interaction.reply({ content: content, allowedMentions: { parse: [] }} );
     }
   }
 };

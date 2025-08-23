@@ -27,12 +27,13 @@ const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildVoiceStates 
   ]
 });
 
 client.once(Events.ClientReady, (c) => {
-  console.log(`✅ Logged in as ${c.user.tag}`);
+  console.log(`slip initiated: ${c.user.tag}`);
 });
 
 // Handle text commands
@@ -47,7 +48,7 @@ client.on(Events.MessageCreate, async (message) => {
     await cmd.run({ type: 'text', message, args });
   } catch (err) {
     console.error(err);
-    await message.reply('Something went wrong.');
+    await message.reply('ough.');
   }
 });
 
@@ -68,6 +69,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     }
   }
 });
+
 
 client.login(process.env.TOKEN);
 
