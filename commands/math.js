@@ -19,12 +19,11 @@ export default {
   async run(ctx) {
     if (ctx.type === 'text') {
         const content = ctx.args.join(' ');
-        if (!content || content.length > 255) return ctx.message.reply('yeaaa so like umm no');
         try { 
             const thing = format(evaluate(content), {precision: 15}).toString().slice(0, 100);
-            await ctx.message.channel.send({ content:`${thing} :nerd:`, allowedMentions: { parse: [] }} );
+            await ctx.message.channel.send({ content:`\`${thing}\` :nerd:`, allowedMentions: { parse: [] }} );
         }
-        catch (err) { ctx.message.channel.send(`errrrrm ${err.message.slice(0, 67)} :nerd::nerd::nerd:`)}
+        catch (err) { ctx.message.channel.send(`errrrrm \`${err.message.slice(0, 67)}\` :nerd::nerd::nerd:`)}
         
         
 
@@ -32,12 +31,11 @@ export default {
 
     if (ctx.type === 'slash') {
         const content = ctx.interaction.options.getString('text');
-        if (content.length > 255) return ctx.message.reply('yeaaa so like umm no');
         try {
             const thing = format(evaluate(content), {precision: 15}).toString().slice(0, 100);
-            await ctx.interaction.reply({ content:`${thing} :nerd:`, allowedMentions: { parse: [] }} );
+            await ctx.interaction.reply({ content:`\`${thing}\` :nerd:`, allowedMentions: { parse: [] }} );
         }
-        catch (err) { ctx.message.channel.send(`errrrrm ${err.message.slice(0, 67)} :nerd::nerd::nerd:`)}
+        catch (err) { ctx.message.channel.send(`errrrrm \`${err.message.slice(0, 67)}\` :nerd::nerd::nerd:`)}
         
         
     }

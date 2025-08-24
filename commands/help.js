@@ -16,7 +16,7 @@ export default {
             .addFields({name: "silly", 
                 value: "``help`` - this\n``ping`` - pong\n``hi`` - bored"+
                 "\n``repeat [text]`` - self-explainatory\n``slip`` - slip!\n``math [math]`` - :nerd:\n``meow`` - meowww (in vc)"+
-                "\n``number [numbr]`` - random\n``opinion (text)`` - yeagh\n``explode [text]`` - :boom:\n``oh`` - oh"
+                "\n``number [numbr]`` - random\n``q (text)`` - yeagh\n``explode [text]`` - :boom:\n``oh`` - oh"
             })
             .setFooter({text: "slip technologies corp 2025-2025"})
     send({embeds: [embed]});

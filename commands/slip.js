@@ -16,7 +16,7 @@ export default {
         ["SLIP.png", "aerowide"], ["slipp.png", "aerowide"], ["slipper.png", "aerowide"], 
         ["slippppp.png", "aerowide"], ["yea idk.png", "aerowide"], ["inkmage.jpg", "InkMage"], 
         ["laterescalator.png", "LaterEscalator"], ["lightrailtransit.png", "LightRailTransit"], ["mila.png", "avxiell"], 
-        ["toffeesan.png", "ToffeeSan"]
+        ["toffeesan.png", "ToffeeSan"], ["kervytc.png", "KervyTheCreator"]
     ]
     const randimage = rand(images)
     const image = new AttachmentBuilder(`commands/media/images/${randimage[0]}`, {name: 'slipppppp.png'})

@@ -14,7 +14,7 @@ export default {
     const guild = ctx.message.guild;
     const meows = ["meow1.mp3", "meow2.mp3", "meow3.mp3", "purr.mp3"];
 
-    await ctx.message.channel.send({ content: 'moew', ephemeral: true });
+    // await ctx.message.channel.send({ content: 'moew', ephemeral: true });
 
     let voiceChannel = ctx.type === 'slash' ? ctx.interaction.member.voice.channel : ctx.message.member.voice.channel;
     if (!voiceChannel) voiceChannel = guild.channels.cache.find(c => c.type === 2 && c.joinable);

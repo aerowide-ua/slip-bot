@@ -15,7 +15,8 @@ export default {
         "bored",
         ":3",
         "gm",
-        "hiiiiiiiiiiiiiiiiiiii"
+        "hiiiiiiiiiiiiiiiiiiii",
+        "lazy",
     ]
     send(rand(responses));
   }
