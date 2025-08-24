@@ -1,43 +1,25 @@
 import { evaluate, format } from 'mathjs';
 
 export default {
-  name: 'math',
-  description: 'hi hello',
-
+  name: 'math', description: 'hi hello',
   slashData: {
-    name: 'math',
-    description: 'yea',
-    options: [
-      {
-        name: 'text',
-        description: 'text here cro',
-        type: 3, // STRING
-        required: true
-      }
-    ]
-  },
+    name: 'math', description: 'yea',
+    options: [{
+        name: 'text', description: 'text here cro',
+        type: 3, required: true
+  }]},
+// --------------------------------------------------------------------------------------------//
   async run(ctx) {
-    if (ctx.type === 'text') {
-        const content = ctx.args.join(' ');
-        try { 
-            const thing = format(evaluate(content), {precision: 15}).toString().slice(0, 100);
-            await ctx.message.channel.send({ content:`\`${thing}\` :nerd:`, allowedMentions: { parse: [] }} );
-        }
-        catch (err) { ctx.message.channel.send(`errrrrm \`${err.message.slice(0, 67)}\` :nerd::nerd::nerd:`)}
-        
-        
+    const send = (msg) => ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.reply(msg);
 
-    }
+    // get the response
+    const content = (ctx.type === 'text') ? ctx.args.join(' ') : ctx.interaction.options.getString('text');
 
-    if (ctx.type === 'slash') {
-        const content = ctx.interaction.options.getString('text');
-        try {
-            const thing = format(evaluate(content), {precision: 15}).toString().slice(0, 100);
-            await ctx.interaction.reply({ content:`\`${thing}\` :nerd:`, allowedMentions: { parse: [] }} );
-        }
-        catch (err) { ctx.message.channel.send(`errrrrm \`${err.message.slice(0, 67)}\` :nerd::nerd::nerd:`)}
-        
-        
-    }
-  }
+    // if user didnt fuck up
+    try {
+      const thing = format(evaluate(content), {precision: 15}).toString().slice(0, 128); // preprocessing :3
+      await send({ content:`\`${thing}\` :nerd:`, allowedMentions: { parse: [] }} ); }
+
+    // if user DID fuck up
+    catch (err) { send(`errrrrm \`${err.message.slice(0, 128)}\` :nerd::nerd::nerd:`)} } 
 }

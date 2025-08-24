@@ -33,7 +33,6 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
       Routes.applicationGuildCommands(process.env.APP, process.env.GUILD),
       { body: slashCommands }
     );
-    console.log('✓ slip step 1 completed');
   } catch (error) {
     console.error(error);
   }

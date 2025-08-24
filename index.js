@@ -19,9 +19,8 @@ async function loadCommands(dir) {
     }
   }
 }
-
-// Load commands dynamically
 await loadCommands(path.resolve('./commands'));
+
 
 const client = new Client({
   intents: [
@@ -67,12 +66,11 @@ client.on(Events.InteractionCreate, async (interaction) => {
   }
 });
 
+
 client.once(Events.ClientReady, (c) => {
   console.log(`slip initiated: ${c.user.tag}`);
-  client.user.setActivity('annual slip olympics', { type: 5 })
+  client.user.setActivity('Jane Remover', { type: ActivityType.Listening})
 });
-
-
 
 client.login(process.env.TOKEN);
 
