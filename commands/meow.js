@@ -9,8 +9,8 @@ export default {
     const send = (msg) => ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.reply(msg);
     const guild = ctx.message.guild;
     const meows = ["meow1.mp3", "meow2.mp3", "meow3.mp3", "purr.mp3"];
-    await send({ content: 'moew', ephemeral: true });
-
+    const tmeows = ["meow", "maw", "mew", "moew", "eow", "nyaw", "purr"]
+    await send({ content: rand(tmeows) + " :black_cat:", ephemeral: true });
 // --------------------------------------------------------------------------------------------//
     // find voice channel for evil purposes
     let voiceChannel = ctx.type === 'slash' ? ctx.interaction.member.voice.channel : ctx.message.member.voice.channel;
@@ -23,7 +23,8 @@ export default {
       guildId: guild.id,
       adapterCreator: guild.voiceAdapterCreator
     });
-    await connection.subscribe(createAudioPlayer());
+    const player = createAudioPlayer()
+    await connection.subscribe(player);
 
     // heh..,,, moew
     const resource = createAudioResource(path.join(process.cwd(),'commands','media','sounds',rand(meows)));

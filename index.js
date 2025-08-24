@@ -6,21 +6,18 @@ import path from 'path';
 const PREFIX = ':3';
 const commandsMap = new Map();
 
-// Recursively load commands from folder
+
 async function loadCommands(dir) {
   const files = fs.readdirSync(dir);
   for (const file of files) {
     const fullPath = path.join(dir, file);
-    if (fs.statSync(fullPath).isDirectory()) {
-      await loadCommands(fullPath);
-    } else if (file.endsWith('.js')) {
+    if (fs.statSync(fullPath).isDirectory()) { await loadCommands(fullPath); } 
+    else if (file.endsWith('.js')) {
       const cmd = (await import(fullPath)).default;
       commandsMap.set(cmd.name, cmd);
-    }
-  }
-}
-await loadCommands(path.resolve('./commands'));
+}}}
 
+await loadCommands(path.resolve('./commands'));
 
 const client = new Client({
   intents: [
@@ -40,13 +37,11 @@ client.on(Events.MessageCreate, async (message) => {
   const cmd = commandsMap.get(name.toLowerCase());
   if (!cmd) return;
 
-  try {
-    await cmd.run({ type: 'text', message, args });
-  } catch (err) {
-    console.error(err);
+  try { await cmd.run({ type: 'text', message, args }); } 
+  catch (err) {
+    console.error(err.message);
     await message.reply('ough.');
-  }
-});
+}});
 
 // Handle slash commands
 client.on(Events.InteractionCreate, async (interaction) => {
@@ -54,18 +49,13 @@ client.on(Events.InteractionCreate, async (interaction) => {
   const cmd = commandsMap.get(interaction.commandName);
   if (!cmd) return;
 
-  try {
-    await cmd.run({ type: 'slash', interaction });
-  } catch (err) {
-    console.error(err);
+  try { await cmd.run({ type: 'slash', interaction }); } 
+  catch (err) {
+    console.error(err.message);
     if (interaction.deferred || interaction.replied) {
       await interaction.editReply('ough.');
-    } else {
-      await interaction.reply({ content: 'ough.', ephemeral: true });
-    }
-  }
+    } else { await interaction.reply({ content: 'ough.', ephemeral: true }); }}
 });
-
 
 client.once(Events.ClientReady, (c) => {
   console.log(`slip initiated: ${c.user.tag}`);
