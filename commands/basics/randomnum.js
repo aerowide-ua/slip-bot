@@ -1,4 +1,4 @@
-import {randn} from '../../extras.js'
+import {randn} from '../../extras/extras.js'
 
 export default {
   name: 'number', description: 'randommdm',

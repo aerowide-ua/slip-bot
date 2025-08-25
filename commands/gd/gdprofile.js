@@ -1,5 +1,6 @@
 import { EmbedBuilder } from 'discord.js'
-import { gdrank, gdi, sp, hexc } from '../../extras.js'
+import { gdrank, gdIcons } from '../../extras/important/strings.js'
+import { getUserInfo } from '../../extras/gd/getUser.js'
 import axios from 'axios'
 
 export default {
@@ -18,53 +19,65 @@ export default {
 
     try { 
         // get the data yum yum
-        const response = await axios.get(`https://gdbrowser.com/api/profile/${encodeURIComponent(username)}`) 
-        const data = response.data
+        const data = await getUserInfo(username)
 
         // embebd,,,
         const embed = new EmbedBuilder()
             .setColor("#89c0ff")
-            .setTitle(`${gdi[7]} ${data.username}'s profile`)
+            .setTitle(`${gdIcons[7]} ${data.name}'s profile`)
             .addFields({ // ------------------------ STATS COLUMN
-                name: `${gdi[9]} STATS`,
+                name: `${gdIcons[9]} STATS`,
                 value: `
                 ${"-".repeat(24)}
-                ${gdrank(data.rank)} **${data.rank != 0 ? data.rank : "None"}** 
-                ${gdi[0]} **Stars:** ${data.stars}
-                ${gdi[1]} **Diamonds:** ${data.diamonds}
-                ${gdi[2]} **Coins:** ${data.coins}
-                ${gdi[3]} **User Coins:** ${data.userCoins}
-                ${gdi[4]} **Demons:** ${data.demons}
-                ${gdi[5]} **Moons:** ${data.moons}
-                ${gdi[6]} **BP:** ${data.cp}
+                ${gdrank(data.lb)} **${data.lb != 0 ? data.lb : "Not in leaderboard"}** 
+                ${gdIcons[0]} **Stars:** ${data.stars}
+                ${gdIcons[1]} **Diamonds:** ${data.diamonds}
+                ${gdIcons[2]} **Coins:** ${data.coins}
+                ${gdIcons[3]} **User Coins:** ${data.userCoins}
+                ${gdIcons[4]} **Demons:** ${data.demons}
+                ${gdIcons[5]} **Moons:** ${data.moons}
+                ${gdIcons[6]} **BP:** ${data.bp}
                 `.trim(), 
                 inline: true
             },{ // ------------------  MISC COLUMN
-                name: `${gdi[10]} MISC`,
+                name: `${gdIcons[10]} MISC`,
                 value: `
                 ${"-".repeat(24)}
-                ${gdi[11]} **Icons:** 
-                \`${data.icon}${sp(data.icon, 4)}/ ${data.ship}${sp(data.ship, 4)}/ ${data.ball}${sp(data.ball, 4)}\`
-                \`${data.ufo}${sp(data.ufo, 4)}/ ${data.wave}${sp(data.wave, 4)}/ ${data.robot}${sp(data.robot, 4)}\`
-                \`${data.spider}${sp(data.spider, 4)}/ ${data.swing}${sp(data.swing, 4)}/ ${data.jetpack}${sp(data.jetpack, 4)}\`
-                ${gdi[19]} **Colors:**
-                Primary: \`${hexc(data.col1RGB.r, data.col1RGB.g, data.col1RGB.b)}\`
-                Secondary: \`${hexc(data.col2RGB.r, data.col2RGB.g, data.col2RGB.b)}\`
-                Glow: \`${data.glow ? hexc(data.colGRGB.r, data.colGRGB.g, data.colGRGB.b) : gdi[20]}\`
+                ${gdIcons[11]} **Icons:** 
+                \`${data.cube} / ${data.ship} / ${data.ball}\`
+                \`${data.ufo} / ${data.wave} / ${data.robot}\`
+                \`${data.spider} / ${data.swing} / ${data.jetpack}\`
+                ${gdIcons[19]} **Colors:**
+                Primary: \`${data.color1}\`
+                Secondary: \`${data.color2}\`
+                Glow: ${data.glow ? `\`${data.colorG}\`` : gdIcons[20]}
                 `,
                 inline: true
             },{ // ETC.
                 name: "",
                 value: `
                 ${"-".repeat(48)}
-                ${gdi[22]} Xitter: ${data.twitter ? `[${data.twitter}](https://twitter.com/${data.twitter})` : gdi[20]}
-                ${gdi[21]} Youtube: ${data.youtube ? `[gog](https://youtube.com/channel/${data.youtube})` : gdi[20]}
+                ${gdIcons[22]} Xitter: ${data.xitter ? `[${data.xitter}](https://twitter.com/${data.xitter})` : gdIcons[20]}
+                ${gdIcons[21]} Youtube: ${data.youtube ? `[gog](https://youtube.com/channel/${data.youtube})` : gdIcons[20]}
+                ${gdIcons[23]} Twitch: ${data.youtube ? `[gog](https://twitch.tv/${data.twitch})` : gdIcons[20]}
                 `
-            })
-            .setFooter({text: `pID: ${data.playerID} | aID: ${data.accountID} | :3`})
+            },{
+                name: "",
+                value: `
+                ${"-".repeat(48)}
+                \`Classic: ${cSpread[0]} | ${cSpread[1]} | ${cSpread[2]} | ${cSpread[3]} | ${cSpread[4]} | ${cSpread[5]} || ${cSpread[6]} | ${cSpread[7]}\`
+                \`Platformer: ${pSpread[0]} | ${pSpread[1]} | ${pSpread[2]} | ${pSpread[3]} | ${pSpread[4]} | ${pSpread[5]} | ${pSpread[6]}\`
+                \`Demons: [ ${dSpread[0]} | ${dSpread[1]} | ${dSpread[2]} | ${dSpread[3]} | ${dSpread[4]} ]\`
+                \`[ ${dSpread[5]} | ${dSpread[6]} | ${dSpread[7]} | ${dSpread[8]} | ${dSpread[9]} ] [ ${dSpread[10]} | ${dSpread[11]} ]\`
+                `
+            }
+        )
+            .setFooter({text: `pID: ${data.pID} | aID: ${data.aID} | :3`})
         
         // finally
         send({embeds: [embed]});
     }
-    catch (err) { send("aero fucked up lmao" + err.message)
+    catch (err) { 
+        send((err.message).includes("500") ? "`User not found or robtop servers are xd`" : `aero fucked up lmao ${err.message}`)
+        console.log(err)
 }}}

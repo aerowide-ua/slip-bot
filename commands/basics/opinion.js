@@ -1,4 +1,4 @@
-import {rand} from '../../extras.js'
+import {rand} from '../../extras/extras.js'
 
 export default {
   name: 'q', description: 'b',
@@ -19,13 +19,15 @@ export default {
         "meowowowow", "yes yes yes maybe perchance",
         "purr", "do you ever feel", "like a plastic bag",
         "skjgalrhkgergj;lekthg", "nuke cherryteam",
-        "lazy", "lazyyyy", "lazyyyyyyyyy",
+        "lazy", "lazyyyyyyyyy", "mmmmyea",
         "laaaaazyyyyyyyyyy", "what no", "gog",
         "gogogogogogog", "i mean sure whatever",
         "nuh uh", "bored", "truth nuke",
         "yeagh", "naw", "mrow (disapproving)",
         "no", "ask galo", "maybe ask galo",
         "idk lol", "throws alvaro at you",
+        "prob not", "maaaaybeee", "try asking galo",
+
         // GIFS
         "https://media.discordapp.net/attachments/777652753274503209/1255784665562873978/f84ef8743b2dec20.gif",
         "https://media.discordapp.net/attachments/1257260830219702386/1316772168079507496/twitter_1866991196440236117.gif",
