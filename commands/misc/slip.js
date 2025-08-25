@@ -1,4 +1,4 @@
-import {rand} from '../extras.js'
+import {rand} from '../../extras.js'
 import { EmbedBuilder, AttachmentBuilder } from 'discord.js'
 
 export default {
@@ -16,7 +16,7 @@ export default {
     ]
 
     const randimage = rand(images)
-    const image = new AttachmentBuilder(`commands/media/images/${randimage[0]}`, {name: 'slipppppp.png'})
+    const image = new AttachmentBuilder(`~/../media/images/${randimage[0]}`, {name: 'slipppppp.png'})
     const embed = new EmbedBuilder()
     .setTitle("slip")
     .setImage(`attachment://slipppppp.png`)

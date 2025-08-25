@@ -1,13 +1,14 @@
 export default {
   name: 'r', description: 'epeat',
-
   slashData: {
     name: 'repeat', description: 'yea',
     options: [{
         name: 'text', description: 'text here cro',
         type: 3, required: true
     }]},
+
 // --------------------------------------------------------------------------------------------//
+
   async run(ctx) {
     const send = (msg) => ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.channel.send(msg);
     const content = ctx.type === 'text' ? ctx.args.join(' ') : ctx.interaction.options.getString('text');
@@ -23,7 +24,6 @@ export default {
       await channel.send({content: `"${content}" via ${ctx.message.author}`, allowedMentions: { parse: [] }})
       ctx.message.delete()
     } 
-    await send(msg)
-    
+    await send(msg)   
   }
 }

@@ -1,4 +1,4 @@
-import {rand} from '../extras.js'
+import {rand} from '../../extras.js'
 
 export default {
   name: 'q', description: 'b',

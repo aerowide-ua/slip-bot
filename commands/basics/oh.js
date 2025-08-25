@@ -8,7 +8,7 @@ export default {
   async run(ctx) {
     const send = (msg) => ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.reply(msg);
 
-    const image = new AttachmentBuilder(`commands/media/images/oh.png`, {name: 'oh.png'})
+    const image = new AttachmentBuilder(`~/../media/images/oh.png`, {name: 'oh.png'})
     const embed = new EmbedBuilder()
     .setImage(`attachment://oh.png`)
 

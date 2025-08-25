@@ -1,11 +1,9 @@
 export default {
   name: 'explode', description: ':boom:',
-  slashData: {
-    name: 'explode', description: 'yea',
-    options: [{
+  options: [{
         name: 'text', description: 'text here cro',
         type: 3, required: true
-    }]},
+  }],
   // --------------------------------------------------------------------------------------------//
   async run(ctx) {
     const content = ctx.type === 'text' ? ctx.args.join(' ') : ctx.interaction.options.getString('text')

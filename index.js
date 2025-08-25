@@ -39,7 +39,7 @@ client.on(Events.MessageCreate, async (message) => {
 
   try { await cmd.run({ type: 'text', message, args }); } 
   catch (err) {
-    console.error(err.message);
+    console.error(err);
     await message.reply('ough.');
 }});
 
@@ -51,7 +51,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
   try { await cmd.run({ type: 'slash', interaction }); } 
   catch (err) {
-    console.error(err.message);
+    console.error(err);
     if (interaction.deferred || interaction.replied) {
       await interaction.editReply('ough.');
     } else { await interaction.reply({ content: 'ough.', ephemeral: true }); }}

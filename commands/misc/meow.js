@@ -1,4 +1,4 @@
-import { rand } from '../extras.js';
+import { rand } from '../../extras.js';
 import path from 'path';
 import { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerStatus } from '@discordjs/voice';
 
@@ -27,7 +27,7 @@ export default {
     await connection.subscribe(player);
 
     // heh..,,, moew
-    const resource = createAudioResource(path.join(process.cwd(),'commands','media','sounds',rand(meows)));
+    const resource = createAudioResource(path.join(process.cwd(),'media','sounds',rand(meows)));
     player.play(resource);
 
     // bye bitch
