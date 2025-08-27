@@ -2,6 +2,13 @@ import { Client, GatewayIntentBits, Events, ActivityType } from 'discord.js';
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+    res.send("staying alive :P");
+});
+app.listen(3000, () => console.log("HTTP server running on port 3000"));
 
 const PREFIX = ':3';
 const commandsMap = new Map();
@@ -56,6 +63,11 @@ client.on(Events.InteractionCreate, async (interaction) => {
       await interaction.editReply('ough.');
     } else { await interaction.reply({ content: 'ough.', ephemeral: true }); }}
 });
+
+
+
+
+
 
 client.once(Events.ClientReady, (c) => {
   console.log(`slip initiated: ${c.user.tag}`);
