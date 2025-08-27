@@ -2,7 +2,7 @@ import { Client, GatewayIntentBits, Events, ActivityType } from 'discord.js';
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
-const express = require("express");
+import express from "express"
 const app = express();
 
 app.get("/", (req, res) => {
