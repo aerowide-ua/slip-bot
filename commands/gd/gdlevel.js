@@ -1,8 +1,8 @@
 import { EmbedBuilder } from 'discord.js'
 import { gdrank, gdIcons, gdAssets, robSongs } from '../../extras/important/strings.js'
-import { getLevels } from '../../extras/gd/getLevel.js'
-import axios from 'axios'
-import sharp from 'sharp'
+import { getLevels, getLevelInfo } from '../../extras/gd/getLevel.js'
+import { decryptXOR } from '../../extras/important/XOR.js'
+
 
 export default {
   name: 'gdlevel', description: 'gd lvele (waow)',
@@ -29,7 +29,7 @@ export default {
             return (data.epic == '3') ? 5 : (data.epic == '2') ? 4 : 
             (data.epic == '1') ? 3 : (data.featureScore != '0') ? 2 : (data.stars != '0') ? 1 : 0 }
 
-    const cDifficulty = (data) => {
+    const cDiff = (data) => {
         if (data.stars == '10') {
             return (data.demonDiff == '3') ? 7 : (data.demonDiff == '4') ? 8 : (data.demonDiff == '0') ? 9 :
             (data.demonDiff == '5') ? 10 : 11 } 
@@ -72,25 +72,33 @@ export default {
         const creators = data[1]
         const songs = data[2]
         const totalOnPage = Math.ceil(Number(data[3])/5)
-        let embed
         if (!isNaN(Number(input))) {
             const level = levels[0]
+            const fullInfo = await getLevelInfo(level.lID)
             const creator = findCreator(creators, level.pID)
             const song = findSong(songs, level.songID, level.oID)
             const coin = Number(level.verifiedCoins) ? gdIcons[3] : gdIcons[44]
+            const copyable = fullInfo.pass == '0'
+            const password = (fullInfo.pass != "0" ? decryptXOR(fullInfo.pass, '26364') : '')
             let embed = new EmbedBuilder()
                 .setColor("#89c0ff")
                 .setTitle(`${gdIcons[9]} you're level sir (gender-neutral)`)
-                .addFields({ 
-                    name: `${gdIcons[6]} **${level.name}** by ${creator[0]} | ${level.stars != '0' ? `${gdIcons[0]} ${level.stars} | ` : ``}${cDifficulty(level) > 0 ? gdIcons[24+cDifficulty(level)] : gdIcons[42]} ${cRating(level) > 0 ? gdIcons[34+cRating(level)] : ``}`,
+                .addFields({
+                    name: `${gdIcons[6]} **${level.name}** by ${creator} > ${level.stars != '0' ? `${gdIcons[0]} ${level.stars} > ` : ``}${cDiff(level) > 0 ? gdIcons[24+cDiff(level)] : gdIcons[42]} ${cRating(level) > 0 ? gdIcons[34+cRating(level)] : ``}${Number(level.coins) ? ' > ' + coin.repeat(Number(level.coins)) : ''}`,
                     value: `
-                    ${gdIcons[45]} __${song[0]} by ${song[1]} | \`${level.songID != '0' ? level.songID : Number(level.oID)+1}\`__
+                    ${gdIcons[45]} __${song[0]} by ${song[1]}__ >> \`${level.songID != '0' ? level.songID : Number(level.oID)+1}\`
                     \`${level.desc != '' ? decodeRobert64(level.desc) : 'No description'}\`
+                    
                     ${gdIcons[41]} \`${level.downloads}\`
                     ${gdIcons[40]} \`${level.likes}\`
                     ${gdIcons[43]} \`${cLength(level.length)}\`
-                    ${Number(level.coins) ? coin.repeat(Number(level.coins)) : ``}
+                    
+                    **ID:** \`${level.lID}\` | **Version:** \`${level.ver}\` | **Objects:** \`${level.objCount}\`
+                    **LDM?** ${fullInfo.LDM == '' ? gdIcons[20] : gdIcons[48]} | **Copy?** ${copyable ? gdIcons[20] : gdIcons[48]} ${password != 'e' && !copyable ? `\`${password}\`` : ''} | **2P?** ${fullInfo.twoPlayer == '0' ? gdIcons[20] : gdIcons[48]}
+                    **Uploaded:** \`${fullInfo.uploadDate}\` | **Updated:** \`${fullInfo.updateDate}\`
+                    ${fullInfo.oID != '0' ? `${gdIcons[49]} **Original:** \`${fullInfo.oID}\`` : ''}
                     `
+                    
             })
             .setFooter({text: `:3`})
             send({embeds: [embed]});
@@ -108,8 +116,9 @@ export default {
                 
                 embed.addFields({
                     name: `\`${(i+1)+(10*truePage)}:\` ${gdIcons[47]} **${level.name}** by **${creator}** | \`${level.lID}\``,
-                    value: `${gdIcons[45]} ${song[0]} by ${song[1]} \`${level.songID != '0' ? level.songID : Number(level.oID)+1}\` | \`${length}\`
-                    ${gdIcons[41]} \`${level.downloads}\` ${gdIcons[40]} \`${level.likes}\``
+                    value: `${gdIcons[45]} ${song[0]} by ${song[1]} >> \`${level.songID != '0' ? level.songID : Number(level.oID)+1}\`
+                    ${gdIcons[41]} \`${level.downloads}\` ${gdIcons[40]} \`${level.likes}\` ${gdIcons[43]} \`${length}\`
+                    `
                 })
             }
             send({embeds: [embed.setFooter({text: `Page ${page+1}/${totalOnPage} | :3 gdlevel [query]%(page)%(param) | :3`})]});

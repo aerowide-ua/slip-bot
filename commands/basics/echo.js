@@ -1,12 +1,9 @@
 export default {
   name: 'r', description: 'epeat',
-  slashData: {
-    name: 'repeat', description: 'yea',
-    options: [{
+  options: [{
         name: 'text', description: 'text here cro',
         type: 3, required: true
-    }]},
-
+  }],
 // --------------------------------------------------------------------------------------------//
 
   async run(ctx) {

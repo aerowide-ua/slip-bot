@@ -2,12 +2,10 @@ import { evaluate, format } from 'mathjs';
 
 export default {
   name: 'math', description: 'hi hello',
-  slashData: {
-    name: 'math', description: 'yea',
-    options: [{
+  options: [{
         name: 'text', description: 'text here cro',
         type: 3, required: true
-  }]},
+  }],
 // --------------------------------------------------------------------------------------------//
   async run(ctx) {
     const send = (msg) => ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.reply(msg);

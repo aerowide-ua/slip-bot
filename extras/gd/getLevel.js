@@ -17,13 +17,12 @@ export async function getLevels(input, page=0, param=null) {
     const body = new URLSearchParams({ "secret": "Wmfd2893gb7", "str": input, "star": 0, "type": type, "page": page})
     const response = await fetch(`${URL}getGJLevels21.php`, { method: "POST", headers: { "User-Agent": "" }, body: body } )
     const levels = await response.text()
-
     const levelsData = splitData(levels, "#")
     const lvlsRaw = splitData(levelsData[0], "|")
     const creatorsRaw = splitData(levelsData[1], "|")
     const songsRaw = splitData(levelsData[2], "~:~")
     const totalOnPage = splitData(levelsData[3], ":")[0]
-    console.log(totalOnPage)
+
     let lvls = [], creators = {}, songs = {}, creatorsS, songsS
     for (let i=0; i<lvlsRaw.length; i++) { lvls.push(makeReadable(parseResponse(lvlsRaw[i], ":"), levelInfoC))}
 
@@ -39,6 +38,6 @@ export async function getLevels(input, page=0, param=null) {
 }
 // curse you robert !!!!!!!!!!!!!!!!!!!!
 
-// console.log(await getLevels('mocha'))
+// console.log(await getLevelInfo('4706930'))
 
 // node ./extras/gd/getLevel.js
