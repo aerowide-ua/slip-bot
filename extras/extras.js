@@ -2,9 +2,9 @@ export function randn(max) {return Math.floor(Math.random() * max)}
 export function rand(list) {return list[Math.floor(Math.random() * list.length)]}
 
 
-export function sp(a, b) {
+export function space(a, b) {
     a = String(a)
-    return " ".repeat(b - a.length)
+    return " ".repeat(b - a.length) + a
 }
 
 export function hexc(a,b,c) {

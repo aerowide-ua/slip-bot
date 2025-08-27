@@ -20,7 +20,22 @@ export default {
     try { 
         // get the data yum yum
         const data = await getUserInfo(username)
-
+        let spread = {name: "", value: ""}
+        if (data.cSpread) {
+        const cSpread = (data.cSpread).split(",")
+        const pSpread = (data.pSpread).split(",")
+        const dSpread = (data.dSpread).split(",")
+        spread = {
+                name: "",
+                value: `
+                ${"-".repeat(48)}
+                \`Classic: ${cSpread[0]} | ${cSpread[1]} | ${cSpread[2]} | ${cSpread[3]} | ${cSpread[4]} | ${cSpread[5]} || ${cSpread[6]} | ${cSpread[7]}\`
+                \`Platformer: ${pSpread[0]} | ${pSpread[1]} | ${pSpread[2]} | ${pSpread[3]} | ${pSpread[4]} | ${pSpread[5]} | ${pSpread[6]}\`
+                \`Demons: [ ${dSpread[0]} | ${dSpread[1]} | ${dSpread[2]} | ${dSpread[3]} | ${dSpread[4]} ]\`
+                \`[ ${dSpread[5]} | ${dSpread[6]} | ${dSpread[7]} | ${dSpread[8]} | ${dSpread[9]} ] [ ${dSpread[10]} | ${dSpread[11]} ]\`
+                `
+            }
+        }
         // embebd,,,
         const embed = new EmbedBuilder()
             .setColor("#89c0ff")
@@ -61,16 +76,7 @@ export default {
                 ${gdIcons[21]} Youtube: ${data.youtube ? `[gog](https://youtube.com/channel/${data.youtube})` : gdIcons[20]}
                 ${gdIcons[23]} Twitch: ${data.youtube ? `[gog](https://twitch.tv/${data.twitch})` : gdIcons[20]}
                 `
-            },{
-                name: "",
-                value: `
-                ${"-".repeat(48)}
-                \`Classic: ${cSpread[0]} | ${cSpread[1]} | ${cSpread[2]} | ${cSpread[3]} | ${cSpread[4]} | ${cSpread[5]} || ${cSpread[6]} | ${cSpread[7]}\`
-                \`Platformer: ${pSpread[0]} | ${pSpread[1]} | ${pSpread[2]} | ${pSpread[3]} | ${pSpread[4]} | ${pSpread[5]} | ${pSpread[6]}\`
-                \`Demons: [ ${dSpread[0]} | ${dSpread[1]} | ${dSpread[2]} | ${dSpread[3]} | ${dSpread[4]} ]\`
-                \`[ ${dSpread[5]} | ${dSpread[6]} | ${dSpread[7]} | ${dSpread[8]} | ${dSpread[9]} ] [ ${dSpread[10]} | ${dSpread[11]} ]\`
-                `
-            }
+            }, spread
         )
             .setFooter({text: `pID: ${data.pID} | aID: ${data.aID} | :3`})
         

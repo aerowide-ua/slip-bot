@@ -5,7 +5,7 @@ const URL = "http://www.boomlings.com/database/"
 
 
 
-async function getUsers(name) {
+export async function getUsers(name) {
     const body = new URLSearchParams({ "secret": "Wmfd2893gb7", "str": name })
     const response = await fetch(`${URL}getGJUsers20.php`, { method: "POST", headers: { "User-Agent": "" }, body: body } )
     const accText = await response.text()
