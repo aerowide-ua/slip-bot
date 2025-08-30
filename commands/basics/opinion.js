@@ -40,13 +40,18 @@ export default {
 
     ]
 
+    const cherryteams = [
+      'nuke cherryteam', 'explode cherryteam', 'kill cherryteam', 'obliterate cherryteam', 'destroy cherryteam', 'throws alvaro at cherryteam'
+    ]
+
     // get the (usually) stupid question
     const res = ctx.type === 'text' ? ctx.args.join(" ") : ctx.interaction.options.getString('text');
     const has = function (a) { return res.includes(a) }
 
     // processing,,,,,
     if ( has("do you ever feel") ) { send("like a plastic bag") } 
-    else if ( has("cherry team") || has("cherryteam") ) { send("nuke cherryteam") } 
+    else if ( has("cherry team") || has("cherryteam") ) { send(rand(cherryteams)) } 
+    else if ( has("moch") ) { send(":3") }
     else{ send(rand(responses)); }
   }
 };

@@ -4,5 +4,5 @@ export const slips = [
         ["slippppp.png", "aerowide"], ["yea idk.png", "aerowide"], ["inkmage.jpg", "InkMage"], 
         ["laterescalator.png", "LaterEscalator"], ["lightrailtransit.png", "LightRailTransit"], ["mila.png", "avxiell"], 
         ["toffeesan.png", "ToffeeSan"], ["kervytc.png", "KervyTheCreator"], ['aimar.jpg', 'aimar'],
-        ['aimar2.jpg', 'aimar'], ['mila2.jpg', 'avxiell']
+        ['aimar2.jpg', 'aimar'], ['mila2.jpg', 'avxiell'], ['2cu.jpg', 'twocu']
 ]
