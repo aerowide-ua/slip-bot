@@ -12,12 +12,20 @@ export default {
     const embed = new EmbedBuilder()
             .setColor("#8989ff")
             .setTitle("help")
-            .setDescription("commands here prob (prefix is ``:3``")
-            .addFields({name: "silly", 
-                value: "``help`` - this\n``ping`` - pong\n``hi`` - bored"+
-                "\n``r [text]`` - repeat\n``slip`` - slip!\n``math [math]`` - :nerd:\n``meow`` - meowww (in vc)"+
-                "\n``number [numbr]`` - random\n``q (text)`` - yeagh\n``explode [text]`` - :boom:\n``oh`` - oh"
-            })
+            .setDescription("slip commands!! (prefix is ``:3``)")
+            .addFields({name: "BASIC", 
+                value: "``help`` - this\n``ping`` - pong\n``hi`` - hello"+
+                "\n``r [text]`` - my talking slip\n``pat`` - please do"+
+                "\n``number [numbr]`` - random\n``q (text)`` - opinions\n``explode [text]`` - :boom:\n``oh`` - oh\n``thunder`` - :zap:\n``bored`` - bored"
+            , inline: true},
+            {name: "GD + MISC", 
+                value: "``gdprofile [user/id]`` - pro fail\n``gdlevel [name/id]`` - levelezzzz :3"+
+                "\n``math [math]`` - :nerd:\n``meow`` - :3\n``slip`` - yaaaaaay\n``pukeko`` - DAAAAMMMMNNN\n``rrm`` - ROBTOP RATING MACHINE\n"
+            , inline: true}
+          
+          
+          
+          )
             .setFooter({text: "slip technologies corp 2025-2025"})
 
     send({embeds: [embed]});

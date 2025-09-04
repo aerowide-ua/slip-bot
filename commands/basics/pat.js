@@ -14,7 +14,7 @@ export default {
         "sooooo epic",
     ]
 
-    const embed = new EmbedBuilder().setImage(`https://media.discordapp.net/attachments/1409538338670776370/1410720052109643847/catpetterz.png`).setTitle(rand(msgs)).setFooter({ text: `awesome slip art by avxiell`})
+    const embed = new EmbedBuilder().setImage(`https://media.discordapp.net/attachments/1257260830219702386/1411371946070904832/Screenshot_2025-08-30-11-27-39-081_jp.ne.ibis.ibispaintx.app-edit.jpg`).setTitle(rand(msgs)).setFooter({ text: `awesome slip art by avxiell`})
 
     send({embeds: [embed]});
   }

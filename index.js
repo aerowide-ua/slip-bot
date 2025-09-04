@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
 app.listen(3000, () => console.log("HTTP server running on port 3000"));
 
 const PREFIX = ':3';
+const MENTION = '<@1408526120776630413>';
 const commandsMap = new Map();
 
 
@@ -41,7 +42,7 @@ client.on(Events.MessageCreate, async (message) => {
   if (message.author.bot || !message.content.startsWith(PREFIX)) return;
 
   const [name, ...args] = message.content.slice(PREFIX.length).trim().split(/\s+/);
-  const cmd = commandsMap.get(name.toLowerCase());
+  const cmd = commandsMap.get(name.toLowerCase())
   if (!cmd) return;
 
   try { await cmd.run({ type: 'text', message, args }); } 
@@ -64,9 +65,18 @@ client.on(Events.InteractionCreate, async (interaction) => {
     } else { await interaction.reply({ content: 'ough.', ephemeral: true }); }}
 });
 
+client.on(Events.MessageCreate, async (message) => {
+  if (message.author.bot || !message.mentions.has(client.user)) return;
 
+  const [name, ...args] = message.content.slice(MENTION.length).trim().split(/\s+/);
+  const cmd = commandsMap.get('q')
+  if (!cmd) return;
 
-
+  try { await cmd.run({ type: 'text', message, args }); } 
+  catch (err) {
+    console.error(err);
+    await message.reply('ough.');
+}});
 
 
 client.once(Events.ClientReady, (c) => {

@@ -46,12 +46,16 @@ export default {
 
     // get the (usually) stupid question
     const res = ctx.type === 'text' ? ctx.args.join(" ") : ctx.interaction.options.getString('text');
-    const has = function (a) { return res.includes(a) }
+    const has = function (a) { return res.toLowerCase().includes(a) }
 
     // processing,,,,,
     if ( has("do you ever feel") ) { send("like a plastic bag") } 
     else if ( has("cherry team") || has("cherryteam") ) { send(rand(cherryteams)) } 
     else if ( has("moch") ) { send(":3") }
+    else if ( has("two can play")) { send("but two's a crowd")}
+    else if ( has("so theres two of me")) { send("im cloning out")}
+    else if ( has("two can dance")) { send("get the music loud")}
+    else if ( has("you a dead man flexin")) { send("show some :boom: now")}
     else{ send(rand(responses)); }
   }
 };

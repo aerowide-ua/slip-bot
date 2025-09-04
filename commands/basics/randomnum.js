@@ -10,9 +10,9 @@ export default {
     }]},
 // --------------------------------------------------------------------------------------------//
   async run(ctx) {
-    const content = ctx.type === 'text' ? ctx.args.join(' ') : ctx.interaction.options.getString('text')
+    const content = ctx.type === 'text' ? Number(ctx.args.join(' ')) : ctx.interaction.options.getInteger('num');
     if (!content || content > 10**7) return ctx.message.reply('number cro');
 
-    await ctx.message.channel.send({ content:`yro'ue number cro: ${randn(content)}`, allowedMentions: { parse: [] }} );
+    await ctx.message.channel.send({ content:`yro'ue number cro: ${randn(content)+1}`, allowedMentions: { parse: [] }} );
   }
 }
