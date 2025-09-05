@@ -22,7 +22,7 @@ export default {
                     '- \`:3 pat\` now has a counter!!\n'+
                     '- overall just added a database for silly\n'+
                     '- bug fixes\n'+
-                    '- this command'+
+                    '- this command\n'+
                     '- MOAR slips \`(.1)\`'
 
                 })
