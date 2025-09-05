@@ -79,6 +79,11 @@ export const creatorInfoC = [
     'uID', 'name', 'pID'
 ]
 
+export const icons = {
+    'stickyNote': '<:STICKYNOTE:1413535977707929660>',
+    'moneyBag': '<:money:1413548571982037103>',
+    'pat': '<:slippat:1413036250847510538>',
+}
 
 
 

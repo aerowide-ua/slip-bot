@@ -37,7 +37,6 @@ const client = new Client({
 });
 
 
-// Handle text commands
 client.on(Events.MessageCreate, async (message) => {
   if (message.author.bot || !message.content.startsWith(PREFIX)) return;
 
