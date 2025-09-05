@@ -13,11 +13,10 @@ export default {
     // embebd,,,
     const embed = new EmbedBuilder()
             .setColor("#89c0ff")
-            .setTitle(`${user.username}'s profile`)
-            .addFields({ // ------------------------ STATS COLUMN
-                name: ``,
+            .setTitle(`:boom: ${user.username}'s profile`)
+            .addFields({
+                name: `:sparkles: **Level:** ${row.level} \`(${row.XP}/? XP)\``,
                 value: `
-                :arrow_up: **Level:** ${row.level} \`(${row.XP}/? XP)\`
                 ${icons.stickyNote} **Sticky Notes:** ${row.stickyNotes}
                 ${icons.pat} **Pats:** ${row.pats}
 

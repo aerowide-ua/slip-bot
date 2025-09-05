@@ -20,7 +20,11 @@ export default {
             , inline: true},
             {name: "GD + MISC", 
                 value: "``gdprofile [user/id]`` - pro fail\n``gdlevel [name/id]`` - levelezzzz :3"+
-                "\n``math [math]`` - :nerd:\n``meow`` - :3\n``slip`` - yaaaaaay\n``pukeko`` - DAAAAMMMMNNN\n``rrm`` - ROBTOP RATING MACHINE\n"
+                "\n``math [math]`` - :nerd:\n``meow`` - :3\n``slip`` - yaaaaaay\n``pukeko`` - DAAAAMMMMNNN\n``rrm`` - ROBTOP RATING MACHINE"+
+                "\n``b64 [text]`` - base64 thing \n``devlog`` - news lol"
+            , inline: true},
+            {name: "SWAG", 
+                value: "``profile`` - ure profile\n``job`` - crazy and evers"
             , inline: true}
           
           
