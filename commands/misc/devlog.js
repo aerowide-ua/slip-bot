@@ -23,7 +23,7 @@ export default {
                     '- overall just added a database for silly\n'+
                     '- bug fixes\n'+
                     '- this command'+
-                    'MOAR slips \`(.1)\`'
+                    '- MOAR slips \`(.1)\`'
 
                 })
                 .setFooter({text: `:3`})
