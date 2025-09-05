@@ -13,7 +13,7 @@ export default {
                 .setColor("#89c0ff")
                 .setTitle(`dev log!!!!!`)
                 .addFields({
-                    name: `update 0.7.27`,
+                    name: `update 0.7.27.1`,
                     value: 
                     '- base64 thingy \`:3 b64\`\n'+
                     '- more pukekos\n'+
@@ -22,7 +22,9 @@ export default {
                     '- \`:3 pat\` now has a counter!!\n'+
                     '- overall just added a database for silly\n'+
                     '- bug fixes\n'+
-                    '- this command'
+                    '- this command'+
+                    'MOAR slips \`(.1)\`'
+
                 })
                 .setFooter({text: `:3`})
     // evil message-sending shenanigans
