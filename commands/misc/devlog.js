@@ -19,7 +19,7 @@ export default {
                     '- primitive reminders !!! \`:3 remind [time] (text)\`\n'+
                     '- reputation system! 25 levels in total\n'+
                     '- big fixes and tweaks :boom:\n'+
-                    '- more mischief otw,,,,,,\n'+
+                    '- more mischief otw,,,,,,\n'
                     
 
                 })
