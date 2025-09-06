@@ -14,13 +14,17 @@ export default {
 
     // check if empty or your talking too long
     if (!content || content.length > 255) return ctx.message.reply('yeaaa so like umm no\n-# empty message or over 255 symbols');
-    
+    let dec = '', enc = '';
+    try { dec = atob(content); } catch { dec = ':x:'; }
+    try { enc = btoa(content); } catch { enc = ':x:'; }
+
+
     const embed = new EmbedBuilder()
                 .setColor("#89c0ff")
                 .setTitle(`:nerd: bass 64`)
                 .addFields({
-                    name: `:arrow_up: Decoded: ${atob(content)}\n:arrow_down: Encoded: ${btoa(content)}`,
-                    value: ``
+                    name: `${content}`,
+                    value: `:arrow_up: Decoded: ${dec}\n:arrow_down: Encoded: ${enc}`
                 })
                 .setFooter({text: `:3`})
     // evil message-sending shenanigans

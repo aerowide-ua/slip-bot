@@ -19,13 +19,20 @@ export const JOB_MULT = [
 ]
 
 export const EXP_MULT = [
-    1, 1, 1.5, 2, 6, 10,
-    15, 20, 30, 75, 100, 
-    150, 200, 275, 350, 500, 
+    1, 1.5, 2, 4, 6,
+    9, 12, 15, 20, 25, 
+    50, 75, 125, 200, 300, 
     700, 1000, 1500, 3000, 5000, 
     7500, 11111, 18181, 23232, 32323
 ]
 
+export const REPUTATION = [
+    'Topatropolis Visitor', 'Topatropolis Newbie I', 'Topatropolis Newbie II', 'Topatropolis Newbie III', 'Topatropolis Citizen I',
+    'Topatropolis Citizen II', 'Topatropolis Citizen III', 'Topatropolis Resident I', 'Topatropolis Resident II', 'Topatropolis Resident III',
+    'Topatropolis Expert I', 'Topatropolis Expert II', 'Topatropolis Expert III', 'Topatropolis Expert IV', 'Topatropolis Expert V',
+    'Topatropolis Council Member I', 'Topatropolis Council Member II', 'Topatropolis Council Member III', 'Topatropolis City Guard I', 'Topatropolis City Guard II',
+    'Topatropolis City Guard III', 'Topatropolis Authority I', 'Topatropolis Authority II', 'Topatropolis Authority III', 'Topatropolis Governor'
+]
 
 
 
@@ -39,13 +46,21 @@ export function GETXP(id, gain) {
         SET('users', 'XP', id, 0)
         return new EmbedBuilder()
             .setColor("#89c0ff")
-            .setTitle(`LEVEL UP!!!`)
+            .setTitle(`REPUTATION UP!!!`)
             .addFields({
-                name: `you're LEVELED UP TO LEVEL ${level+1}!!!!!!!!!!!!`,
+                name: `your'e now \`${REPUTATION[level]}\`!!!!!!!!!!!!`,
                 value: ``
             })
             .setFooter({text: `:3`})
     } else {
         INC('users', 'XP', id, gain)
     }
+}
+
+export const progressBar = (current, total, size=10) => {
+        const progress = Math.round(size * (current / total));
+        const emptyProgress = size - progress;
+        const progressText = '|'.repeat(progress);
+        const emptyProgressText = ' '.repeat(emptyProgress);
+        return `\`[${progressText}${emptyProgressText}]\` (${current}/${total})`;
 }

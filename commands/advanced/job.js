@@ -5,6 +5,8 @@ import { randn, rand } from '../../extras/extras.js'
 import icons from '../../extras/data/icons.json' with { type: 'json' };
 
 import {COOLDOWN} from '../../systems/cooldown.js'
+import {GET, INC} from '../../systems/getdb.js'
+import {GETXP, EXP_MULT, progressBar, LEVELS} from '../../systems/xpgain.js'
 
 export default {
   name: 'job', description: 'j',
@@ -15,6 +17,13 @@ export default {
 
     const cooldown = COOLDOWN(user.id, 'job', 7)
     if (cooldown) return send(`⏳ ure on **${cooldown}** second cooldown cro.`)
+    const row = GET('users', 0, user.id)
+    const currLVL = row.level, currEXP = row.XP
+
+
+    const exp = EXP_MULT[currLVL]*2 + randn(Math.ceil(3*EXP_MULT[currLVL]))
+    const getxp = GETXP(user.id, exp)
+    if (getxp) send({embeds: [getxp]})
 
     const jobs = [
         'slip inc. fuckarounder and findouter',
@@ -62,7 +71,8 @@ export default {
         'mocha\'s personal catnip dosator',
         'catnip sorter & taste tester',
         'akerae tomato thrower',
-        'illuminati confirmer'
+        'illuminati confirmer',
+        'mocha fanart ambassador'
 
     ]
 
@@ -71,10 +81,10 @@ export default {
             .setColor("#89c0ff")
             .setTitle(`J*B`)
             .addFields({
-                name: `${icons.moneyBag} __${user.username}__ worked as a ${rand(jobs)} and earned __pocket lint!__`,
+                name: `${icons.moneyBag} __${user.username}__ worked as a ${rand(jobs)} and earned __${exp} reputation!!__`,
                 value: ``
             })
-            .setFooter({text: `Balance: none LOL  /  :3`})
+            .setFooter({text: `${currEXP+exp}/${LEVELS[currLVL]} REP  /  :3`})
         // finally
     send({embeds: [embed]});
 }}

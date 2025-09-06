@@ -3,6 +3,8 @@ import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import express from "express"
+import db from './db.js'
+import { EmbedBuilder } from 'discord.js'
 const app = express();
 
 app.get("/", (req, res) => {
@@ -76,6 +78,27 @@ client.on(Events.MessageCreate, async (message) => {
     console.error(err);
     await message.reply('ough.');
 }});
+
+setInterval(async () => {
+  const now = Date.now()
+  const dueReminders = db.prepare(`
+    SELECT * FROM reminders 
+    WHERE status='pending' AND dueTime <= ?
+  `).all(now);
+
+  for (const reminder of dueReminders) {
+    try {
+      const user = await client.users.fetch(reminder.userId);
+      if (user) { await user.send(`reminderrrrrr \`${reminder.text}\``);}
+      db.prepare(`UPDATE reminders SET status='done' WHERE id=?`).run(reminder.id);
+    } catch (err) { console.error(`Failed to send reminder to ${reminder.userId}:`, err);}
+  }
+}, 10 * 1000); 
+
+
+
+
+
 
 
 client.once(Events.ClientReady, (c) => {
