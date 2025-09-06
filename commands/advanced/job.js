@@ -15,7 +15,7 @@ export default {
     const user = ctx.type === 'text' ? ctx.message.author : ctx.interaction.user
     const send = (msg) => ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.reply(msg);
 
-    const cooldown = COOLDOWN(user.id, 'job', 7)
+    const cooldown = COOLDOWN(user.id, 'job', 12)
     if (cooldown) return send(`⏳ ure on **${cooldown}** second cooldown cro.`)
     const row = GET('users', 0, user.id)
     const currLVL = row.level, currEXP = row.XP

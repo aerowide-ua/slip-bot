@@ -13,17 +13,14 @@ export default {
                 .setColor("#89c0ff")
                 .setTitle(`dev log!!!!!`)
                 .addFields({
-                    name: `update 0.7.27.1`,
+                    name: `update 0.8.00`,
                     value: 
-                    '- base64 thingy \`:3 b64\`\n'+
-                    '- more pukekos\n'+
-                    '- very basic \`:3 profile\` command\n'+
-                    '- we added unfairly paid work to slip 3 am do not try at hom \`:3 job\`\n'+
-                    '- \`:3 pat\` now has a counter!!\n'+
-                    '- overall just added a database for silly\n'+
-                    '- bug fixes\n'+
-                    '- this command\n'+
-                    '- MOAR slips \`(.1)\`'
+                    '- removerd economy :tada:\n'+
+                    '- primitive reminders !!! \`:3 remind [time] (text)\`\n'+
+                    '- reputation system! 25 levels in total\n'+
+                    '- big fixes and tweaks :boom:\n'+
+                    '- more mischief otw,,,,,,\n'+
+                    
 
                 })
                 .setFooter({text: `:3`})
