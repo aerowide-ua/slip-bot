@@ -1,6 +1,7 @@
 import { EmbedBuilder } from 'discord.js'
 import {GET} from '../../systems/getdb.js'
-import {icons} from '../../extras/important/strings.js'
+
+import icons from '../../extras/data/icons.json' with { type: 'json' };
 
 export default {
   name: 'profile', description: 'gd profile (waow)',

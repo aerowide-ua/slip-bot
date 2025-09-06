@@ -1,5 +1,3 @@
-import { userInfoC } from '../important/strings.js'
-
 export function parseResponse(rawData, sep) {
     const split = !(rawData == undefined ) ? rawData.split(sep) : ''
     let result = {}

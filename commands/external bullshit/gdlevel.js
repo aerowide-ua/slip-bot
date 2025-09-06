@@ -1,5 +1,6 @@
 import { EmbedBuilder } from 'discord.js'
-import { gdrank, gdIcons, gdAssets, robSongs } from '../../extras/important/strings.js'
+import { gdIcons } from '../../extras/important/strings.js'
+import robSongs from '../../extras/data/robSongs.json' with { type: 'json' };
 import { getLevels, getLevelInfo } from '../../extras/gd/getLevel.js'
 import { decryptXOR } from '../../extras/important/XOR.js'
 

@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import {rand} from '../../extras/extras.js'
-import {slips} from '../../extras/important/slips.js'
 import { EmbedBuilder, AttachmentBuilder } from 'discord.js'
 
 export default {

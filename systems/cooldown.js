@@ -24,3 +24,4 @@ export function COOLDOWN(userId, commandName, seconds) {
   setTimeout(() => cooldowns.delete(key), seconds * 1000);
   return null;
 }
+

@@ -1,9 +1,13 @@
 import { EmbedBuilder } from 'discord.js'
-import {icons} from '../../extras/important/strings.js'
+
 import { randn, rand } from '../../extras/extras.js'
+
+import icons from '../../extras/data/icons.json' with { type: 'json' };
+
 import {COOLDOWN} from '../../systems/cooldown.js'
 import {GET, INC} from '../../systems/getdb.js'
 import {GETXP} from '../../systems/xpgain.js'
+
 
 export default {
   name: 'job', description: 'j',
@@ -15,7 +19,7 @@ export default {
     const xpgain = randn(3)+1
 
     const cooldown = COOLDOWN(user.id, 'job', 10)
-    if (cooldown) return send(`⏳ ure on **${cooldown}** second cooldown cro.`);
+    if (cooldown) return send(`⏳ ure on **${cooldown}** second cooldown cro.`)
 
     let row = GET('users', 0, user.id)
     GETXP(user.id, xpgain)

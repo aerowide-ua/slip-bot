@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import { makeReadable, parseResponse, splitData } from './convertRobertStrings.js'
-import { levelInfoC, creatorInfoC } from '../important/strings.js'
+import levelInfoC from '../data/levelInfo.json' with { type: 'json' };
 import {getUsers} from './getUser.js'
 const URL = "http://www.boomlings.com/database/"
 
