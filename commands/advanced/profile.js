@@ -1,5 +1,6 @@
 import { EmbedBuilder } from 'discord.js'
 import {GET} from '../../systems/getdb.js'
+import {LEVELS} from '../../systems/xpgain.js'
 
 import icons from '../../extras/data/icons.json' with { type: 'json' };
 
@@ -16,7 +17,7 @@ export default {
             .setColor("#89c0ff")
             .setTitle(`:boom: ${user.username}'s profile`)
             .addFields({
-                name: `:sparkles: **Level:** ${row.level} \`(${row.XP}/? XP)\``,
+                name: `:sparkles: **Level:** ${row.level} \`(${row.XP}/${LEVELS[row.level]} XP)\``,
                 value: `
                 ${icons.stickyNote} **Sticky Notes:** ${row.stickyNotes}
                 ${icons.pat} **Pats:** ${row.pats}

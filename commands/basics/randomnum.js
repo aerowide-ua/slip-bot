@@ -2,12 +2,10 @@ import {randn} from '../../extras/extras.js'
 
 export default {
   name: 'number', description: 'randommdm',
-  slashData: {
-    name: 'number', description: 'yea',
-    options: [{
+  options: [{
         name: 'num', description: 'number here cro',
         type: 4, required: true
-    }]},
+  }],
 // --------------------------------------------------------------------------------------------//
   async run(ctx) {
     const content = ctx.type === 'text' ? Number(ctx.args.join(' ')) : ctx.interaction.options.getInteger('num');

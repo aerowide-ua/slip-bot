@@ -16,6 +16,11 @@ export function GET(table, op, user='') {
 export function INC (t, col, id='', val=1) {
     let query = `UPDATE ${t} SET ${col} = ${col} + ${val}`;
     if (id !== '') { query += ` WHERE id='${id}'`;}
+    db.prepare(query).run();
+}
 
+export function SET (t, col, id='', val=1) {
+    let query = `UPDATE ${t} SET ${col} = ${val}`;
+    if (id !== '') { query += ` WHERE id='${id}'`;}
     db.prepare(query).run();
 }

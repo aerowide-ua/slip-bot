@@ -7,7 +7,7 @@ import icons from '../../extras/data/icons.json' with { type: 'json' };
 import {COOLDOWN} from '../../systems/cooldown.js'
 import {GET, INC} from '../../systems/getdb.js'
 import {GETXP} from '../../systems/xpgain.js'
-
+import { JOB_MULT, EXP_MULT } from '../../systems/xpgain.js'; 
 
 export default {
   name: 'job', description: 'j',
@@ -15,15 +15,19 @@ export default {
   async run(ctx) {
     const user = ctx.type === 'text' ? ctx.message.author : ctx.interaction.user
     const send = (msg) => ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.reply(msg);
-    const payout = randn(10)+1
-    const xpgain = randn(3)+1
 
-    const cooldown = COOLDOWN(user.id, 'job', 10)
+    const cooldown = COOLDOWN(user.id, 'job', 7)
     if (cooldown) return send(`⏳ ure on **${cooldown}** second cooldown cro.`)
 
     let row = GET('users', 0, user.id)
-    GETXP(user.id, xpgain)
-    INC('users', 'stickyNotes', user.id, xpgain)
+
+    const payout = Math.max(randn(Math.ceil(10*JOB_MULT[row.level]))+1, JOB_MULT[row.level]*2)
+    const xpgain = Math.max(randn(3*EXP_MULT[row.level])+1, Math.ceil(EXP_MULT[row.level]/2))
+
+    
+    let exp = GETXP(user.id, xpgain)
+    if (exp) send({embeds: [exp]})
+    INC('users', 'stickyNotes', user.id, payout)
 
     const jobs = [
         'slip inc. fuckarounder and findouter',

@@ -27,6 +27,24 @@ db.prepare(`
     status TEXT DEFAULT 'pending'
 );`).run()
 
+db.prepare(`
+    CREATE TABLE IF NOT EXISTS achievements (
+    id TEXT PRIMARY KEY,
+    mitik INT DEFAULT 0,
+    pats INT DEFAULT 0,
+    level INT DEFAULT 0,
+    job INT DEFAULT 0,
+    notes INT DEFAULT 0,
+    reminders INT DEFAULT 0,
+    commands INT DEFAULT 0,
+    rrm TEXT DEFAULT '000000',
+    bored INT DEFAULT 0
+);`).run()
+
+
+
+
+
 db.prepare(`INSERT OR IGNORE INTO global (pats, users) VALUES (0, 0);`).run()
 
 
