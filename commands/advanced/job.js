@@ -74,7 +74,7 @@ export default {
                 name: `${icons.moneyBag} __${user.username}__ worked as a ${rand(jobs)} and earned __pocket lint!__`,
                 value: ``
             })
-            .setFooter({text: `Balance: none LOL  /  +${xpgain} XP  /  :3`})
+            .setFooter({text: `Balance: none LOL  /  :3`})
         // finally
     send({embeds: [embed]});
 }}
