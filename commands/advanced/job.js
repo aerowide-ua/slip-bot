@@ -5,9 +5,6 @@ import { randn, rand } from '../../extras/extras.js'
 import icons from '../../extras/data/icons.json' with { type: 'json' };
 
 import {COOLDOWN} from '../../systems/cooldown.js'
-import {GET, INC} from '../../systems/getdb.js'
-import {GETXP} from '../../systems/xpgain.js'
-import { JOB_MULT, EXP_MULT } from '../../systems/xpgain.js'; 
 
 export default {
   name: 'job', description: 'j',
@@ -18,16 +15,6 @@ export default {
 
     const cooldown = COOLDOWN(user.id, 'job', 7)
     if (cooldown) return send(`⏳ ure on **${cooldown}** second cooldown cro.`)
-
-    let row = GET('users', 0, user.id)
-
-    const payout = Math.max(randn(Math.ceil(10*JOB_MULT[row.level]))+1, JOB_MULT[row.level]*2)
-    const xpgain = Math.max(randn(3*EXP_MULT[row.level])+1, Math.ceil(EXP_MULT[row.level]/2))
-
-    
-    let exp = GETXP(user.id, xpgain)
-    if (exp) send({embeds: [exp]})
-    INC('users', 'stickyNotes', user.id, payout)
 
     const jobs = [
         'slip inc. fuckarounder and findouter',
@@ -84,10 +71,10 @@ export default {
             .setColor("#89c0ff")
             .setTitle(`J*B`)
             .addFields({
-                name: `${icons.moneyBag} __${user.username}__ worked as a ${rand(jobs)} and earned __${payout} sticky notes!__`,
+                name: `${icons.moneyBag} __${user.username}__ worked as a ${rand(jobs)} and earned __pocket lint!__`,
                 value: ``
             })
-            .setFooter({text: `Balance: ${row.stickyNotes + payout}  /  +${xpgain} XP  /  :3`})
+            .setFooter({text: `Balance: none LOL  /  +${xpgain} XP  /  :3`})
         // finally
     send({embeds: [embed]});
 }}

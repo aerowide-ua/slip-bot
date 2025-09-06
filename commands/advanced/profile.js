@@ -19,7 +19,6 @@ export default {
             .addFields({
                 name: `:sparkles: **Level:** ${row.level} \`(${row.XP}/${LEVELS[row.level]} XP)\``,
                 value: `
-                ${icons.stickyNote} **Sticky Notes:** ${row.stickyNotes}
                 ${icons.pat} **Pats:** ${row.pats}
 
                 `
