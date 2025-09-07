@@ -1,4 +1,4 @@
-import { EmbedBuilder } from 'discord.js'
+import { EmbedBuilder, Client } from 'discord.js'
 import {GET, SET} from '../../systems/getdb.js'
 import db from '../../db.js'
 import {LEVELS, REPUTATION, progressBar} from '../../systems/xpgain.js'

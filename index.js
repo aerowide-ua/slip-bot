@@ -46,7 +46,7 @@ client.on(Events.MessageCreate, async (message) => {
   const cmd = commandsMap.get(name.toLowerCase())
   if (!cmd) return;
 
-  try { await cmd.run({ type: 'text', message, args }); } 
+  try { await cmd.run({ type: 'text', message, args, client }); } 
   catch (err) {
     console.error(err);
     await message.reply('ough.');
@@ -73,7 +73,7 @@ client.on(Events.MessageCreate, async (message) => {
   const cmd = commandsMap.get('q')
   if (!cmd) return;
 
-  try { await cmd.run({ type: 'text', message, args }); } 
+  try { await cmd.run({ type: 'text', message, args, client }); } 
   catch (err) {
     console.error(err);
     await message.reply('ough.');
