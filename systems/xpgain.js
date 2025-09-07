@@ -7,7 +7,7 @@ export const LEVELS = [
     350, 800, 1500, 2500, 4000, // 6-10
     7500, 11111, 15000, 22500, 30000, // 11-15
     72727, 100000, 150000, 200000, 250000, // 16-20 
-    333333, 555555, 777777, 999999, 1234567 // 21-25
+    333333, 555555, 777777, 999999, 1234567, 1 // 21-25
 ]
 
 export const JOB_MULT = [
@@ -21,13 +21,13 @@ export const JOB_MULT = [
 export const EXP_MULT = [
     1, 1.5, 2, 4, 6,
     9, 12, 15, 20, 25, 
-    50, 75, 125, 200, 300, 
-    700, 1000, 1500, 3000, 5000, 
-    7500, 11111, 18181, 23232, 32323
+    50, 75, 100, 125, 150, 
+    200, 250, 300, 350, 400, 
+    500, 600, 700, 850, 1000, 0
 ]
 
 export const REPUTATION = [
-    'Topatropolis Visitor', 'Topatropolis Newbie I', 'Topatropolis Newbie II', 'Topatropolis Newbie III', 'Topatropolis Citizen I',
+    '', 'Topatropolis Visitor', 'Topatropolis Newbie I', 'Topatropolis Newbie II', 'Topatropolis Newbie III', 'Topatropolis Citizen I',
     'Topatropolis Citizen II', 'Topatropolis Citizen III', 'Topatropolis Resident I', 'Topatropolis Resident II', 'Topatropolis Resident III',
     'Topatropolis Expert I', 'Topatropolis Expert II', 'Topatropolis Expert III', 'Topatropolis Expert IV', 'Topatropolis Expert V',
     'Topatropolis Council Member I', 'Topatropolis Council Member II', 'Topatropolis Council Member III', 'Topatropolis City Guard I', 'Topatropolis City Guard II',
