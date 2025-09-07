@@ -5,8 +5,9 @@ import { randn, rand } from '../../extras/extras.js'
 import icons from '../../extras/data/icons.json' with { type: 'json' };
 
 import {COOLDOWN} from '../../systems/cooldown.js'
-import {GET, INC} from '../../systems/getdb.js'
+import {GET, INC, SET} from '../../systems/getdb.js'
 import {GETXP, EXP_MULT, progressBar, LEVELS} from '../../systems/xpgain.js'
+import { ACH, SET_ACH } from '../../systems/achievements.js'
 
 export default {
   name: 'job', description: 'j',
@@ -15,7 +16,7 @@ export default {
     const user = ctx.type === 'text' ? ctx.message.author : ctx.interaction.user
     const send = (msg) => ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.reply(msg);
 
-    const cooldown = COOLDOWN(user.id, 'job', 12)
+    const cooldown = COOLDOWN(user.id, 'job', 7)
     if (cooldown) return send(`⏳ ure on **${cooldown}** second cooldown cro.`)
     const row = GET('users', 0, user.id)
     const currLVL = row.level, currEXP = row.XP
@@ -75,6 +76,20 @@ export default {
         'mocha fanart ambassador'
 
     ]
+
+    const ACHlength = Object.keys(ACH).length
+    INC('users', 'jobs', user.id)
+    
+    let achievements = row.achievements.split(":")
+    if (row.achievements == '' || achievements.length == 1) { 
+        const emptyACH = '0' + ':0'.repeat(ACHlength - 1)
+        SET('users', 'achievements', user.id, emptyACH)
+        achievements = row.achievements.split(":")
+    }
+    const uPats = await GET('users', 0, user.id).jobs
+    const achNumber = uPats >= 2500 ? 7 : uPats >= 500 ? 6 : uPats >= 250 ? 5 : uPats >= 100 ? 4 : uPats >= 50 ? 3 : uPats >= 10 ? 2 : uPats >= 1 ? 1 : 0
+    
+    if (achNumber > 0) { SET_ACH(user.id, 9, achNumber)}
 
     // embebd,,,
     const embed = new EmbedBuilder()

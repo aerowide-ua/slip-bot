@@ -9,7 +9,11 @@ db.prepare(`
     pats INT DEFAULT 0,
     XP INT DEFAULT 0,
     level INT DEFAULT 1,
-    reminders TEXT DEFAULT ''
+    reminders TEXT DEFAULT '',
+    achievements TEXT DEFAULT '',
+    badges TEXT DEFAULT '',
+    rrm TEXT DEFAULT '',
+    jobs INT DEFAULT 0
 );`).run()
 
 db.prepare(`
@@ -26,22 +30,6 @@ db.prepare(`
     text TEXT,
     status TEXT DEFAULT 'pending'
 );`).run()
-
-db.prepare(`
-    CREATE TABLE IF NOT EXISTS achievements (
-    id TEXT PRIMARY KEY,
-    mitik INT DEFAULT 0,
-    pats INT DEFAULT 0,
-    level INT DEFAULT 0,
-    job INT DEFAULT 0,
-    notes INT DEFAULT 0,
-    reminders INT DEFAULT 0,
-    commands INT DEFAULT 0,
-    rrm TEXT DEFAULT '000000',
-    bored INT DEFAULT 0
-);`).run()
-
-
 
 
 

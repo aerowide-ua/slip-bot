@@ -32,6 +32,7 @@ await loadCommands(path.resolve('./commands'));
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildVoiceStates 
@@ -94,12 +95,6 @@ setInterval(async () => {
     } catch (err) { console.error(`Failed to send reminder to ${reminder.userId}:`, err);}
   }
 }, 10 * 1000); 
-
-
-
-
-
-
 
 client.once(Events.ClientReady, (c) => {
   console.log(`slip initiated: ${c.user.tag}`);

@@ -57,13 +57,7 @@ export default {
             return robSongs["0"]
         }
     }
-    /*
-    ok so if we have page 0 -> page 0, 1
-    page 1 -> page 2, 3
-    page 2 -> page 4, 5
-    page 3 -> page 6, 7
-    */
-
+    
     try { 
         // get the data yum yum
         const part = (page%2) + 1
