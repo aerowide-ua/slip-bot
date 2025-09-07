@@ -13,13 +13,13 @@ export default {
                 .setColor("#89c0ff")
                 .setTitle(`dev log!!!!!`)
                 .addFields({
-                    name: `update 0.8.00`,
+                    name: `update 0.8.88`,
                     value: 
-                    '- removerd economy :tada:\n'+
-                    '- primitive reminders !!! \`:3 remind [time] (text)\`\n'+
-                    '- reputation system! 25 levels in total\n'+
-                    '- big fixes and tweaks :boom:\n'+
-                    '- more mischief otw,,,,,,\n'
+                    '- added ACHIEVEMENTS\n'+
+                    '- added coinflip lol\`\n'+
+                    '- big fixes big everything\n'+
+                    '- more tweaks :boom:\n'+
+                    '- even more mischief otw,,,,,,\n'
                     
 
                 })

@@ -15,7 +15,7 @@ export default {
             .setDescription("slip commands!! (prefix is ``:3``)")
             .addFields({name: "BASIC", 
                 value: "``help`` - this\n``ping`` - pong\n``hi`` - hello"+
-                "\n``r [text]`` - my talking slip\n``pat`` - please do"+
+                "\n``r [text]`` - my talking slip\n``pat`` - please do\n``cf`` - coineflip"+
                 "\n``number [numbr]`` - random\n``q (text)`` - opinions\n``explode [text]`` - :boom:\n``oh`` - oh\n``thunder`` - :zap:\n``bored`` - bored"
             , inline: true},
             {name: "GD + MISC", 
@@ -24,7 +24,7 @@ export default {
                 "\n``b64 [text]`` - base64 thing \n``devlog`` - news lol"
             , inline: true},
             {name: "SWAG", 
-                value: "``profile`` - ure profile\n``job`` - crazy and evers"
+                value: "``profile`` - ure profile\n``job`` - crazy and evers\n``reminder [time] [text]`` - reminderrrr\n``ach`` - achievnment"
             , inline: true}
           
           
