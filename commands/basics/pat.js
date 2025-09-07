@@ -35,7 +35,7 @@ export default {
     if (achNumber > 0) { SET_ACH(user.id, 0, achNumber)}
 
 
-    const embed = new EmbedBuilder().setThumbnail(`https://media.discordapp.net/attachments/1257260830219702386/1411371946070904832/Screenshot_2025-08-30-11-27-39-081_jp.ne.ibis.ibispaintx.app-edit.jpg`).setTitle(rand(msgs)).setDescription("awesome art by mila").setFooter({ text: `total pats: ${pats.pats}  |  your pats: ${uPats}`})
+    const embed = new EmbedBuilder().setThumbnail(`https://media.discordapp.net/attachments/1257260830219702386/1411371946070904832/Screenshot_2025-08-30-11-27-39-081_jp.ne.ibis.ibispaintx.app-edit.jpg`).setTitle(rand(msgs)).setDescription("awesome art by mila").setFooter({ text: `your/total pats: ${pats.pats}/${uPats}`})
 
     send({embeds: [embed]});
   }
