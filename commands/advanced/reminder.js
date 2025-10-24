@@ -30,7 +30,7 @@ export default {
     while ((match = regex.exec(time)) !== null) {
         const value = parseInt(match[1], 10);
         const unit = match[2];
-        if (!units[unit]) return send('invalid time unit cro\n-# use s/m/h/d/w/m/y');
+        if (!units[unit]) return send('invalid time unit cro\n-# use s/m/h/d/w/M/y');
         if (isNaN(value) || value <= 0) return send('invalid time cro\n-# use a number before the time unit');
         realTime += value * parseInt(units[unit], 10);
     }
@@ -41,14 +41,14 @@ export default {
     SET('users', 'reminders', user.id, GET('users', 0, user.id).reminders + `:${reminder.lastInsertRowid}`)
     const embed = new EmbedBuilder()
             .setColor("#89c0ff")
-            .setTitle(`REMINDER SETdlkfjsfg!!`)
+            .setTitle(`REMINDER SET!!`)
             .addFields({
                 name: ``,
                 value: `
-                alr cro sending reminder \`${text}\` in \`${time}\` :3
+                Alr cro sending reminder "\`${text}\`" in \`${time}\` :3
                 `
             })
-            .setFooter({text: `:3`})
+            .setFooter({text: `slip reminder subdivision 2025-2025 :3`})
         // finally
     send({embeds: [embed]});
 }}
