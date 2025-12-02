@@ -37,7 +37,7 @@ export default {
         realTime += value * parseInt(units[unit], 10);
     }
 
-    const text = content[1]
+    const text = content.slice(1).join(' ')
     
     const reminder = db.prepare(`INSERT INTO reminders (userId, text, dueTime) VALUES (?, ?, ?)`).run(user.id, text, Date.now() + realTime * 1000)
     SET('users', 'reminders', user.id, GET('users', 0, user.id).reminders + `:${reminder.lastInsertRowid}`)
