@@ -1,21 +1,24 @@
 import { EmbedBuilder, Client } from 'discord.js'
 import {GET, SET} from '../../systems/getdb.js'
 import db from '../../db.js'
-import {LEVELS, REPUTATION, progressBar} from '../../systems/xpgain.js'
 
 import icons from '../../extras/data/icons.json' with { type: 'json' };
 
 export default {
   name: 'reminder', description: 'yaya',
   options: [{
-        name: 'text', description: 'time, text',
+        name: 'time', description: 'the time before the inevitable slip dm hits (ts probably breaks at months)',
+        type: 3, required: true
+  },
+    {
+        name: 'comment', description: 'the reminder itelf',
         type: 3, required: true
   }],
 
   async run(ctx) {
     const user = ctx.type === 'text' ? ctx.message.author : ctx.interaction.user
     const send = (msg) => ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.reply(msg);
-    const content = ctx.type === 'text' ? ctx.args.join(' ') : ctx.interaction.options.getString('text');
+    const content = ctx.type === 'text' ? ctx.args.join(' ') : [ctx.interaction.options.getString('time'), ctx.interaction.options.getString('comment')];
 
     if (!content) return send('no reminder text cro\n-# use `:3 reminder <time> <text>`')
     if (content.length > 255) return send('reminder text too long cro\n-# max 255 symbols')
