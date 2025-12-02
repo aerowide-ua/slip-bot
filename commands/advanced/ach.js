@@ -38,13 +38,13 @@ export default {
     
 
     let completed = 0
-    for (let a in achievements) { if (a!="0") {completed++} }
+    for (let a in achievements) { if (a!=="0") {completed++} }
 
     let display = ''
     let ach = ''
 
     for (let i=0; i<ACHlength; i++) {
-        try {if (achievements[i] != "0") {
+        try {if (achievements[i] !== "0") {
             ach = typeof ACH_DISPLAY[i] == "object" ? ACH_DISPLAY[i][Number(achievements[i])-1] : ACH_DISPLAY
             display += `${ach[3]} **${ach[0]}** - ${ach[1]}\n`
         }} catch (e) {
@@ -63,12 +63,12 @@ export default {
             .addFields({
                 name: `Achievement progress`,
                 value: `
-                ${progressBar(completed, ACHlength)}
+                ${Math.round((completed/achievements.length)*100)}%
 
                 ${display}
                 `
             })
-            .setFooter({text: `:3`})
+            .setFooter({text: `slip achievement subdivision 2025-2025 :3`})
         // finally
     send({embeds: [embed]});
 }}
