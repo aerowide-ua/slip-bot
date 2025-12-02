@@ -2,8 +2,6 @@ import { EmbedBuilder, Client } from 'discord.js'
 import {GET, SET} from '../../systems/getdb.js'
 import db from '../../db.js'
 
-import icons from '../../extras/data/icons.json' with { type: 'json' };
-
 export default {
   name: 'reminder', description: 'yaya',
   options: [{
@@ -18,15 +16,16 @@ export default {
   async run(ctx) {
     const user = ctx.type === 'text' ? ctx.message.author : ctx.interaction.user
     const send = (msg) => ctx.type === 'slash' ? ctx.interaction.reply(msg) : ctx.message.reply(msg);
-    const content = ctx.type === 'text' ? ctx.args.join(' ') : [ctx.interaction.options.getString('time'), ctx.interaction.options.getString('comment')];
-
+    console.log(ctx.args)
+    const content = ctx.type === 'text' ? ctx.args : [ctx.interaction.options.getString('time'), ctx.interaction.options.getString('comment')];
+    
     if (!content) return send('no reminder text cro\n-# use `:3 reminder <time> <text>`')
     if (content.length > 255) return send('reminder text too long cro\n-# max 255 symbols')
 
     const units = {
         s: '1', m: '60', h: '3600', d: '86400', w: '604800', M: '2419200', y: '31557600'
     }
-    const time = content.split(' ')[0]
+    const time = content[0]
     const regex = /(\d+)([yMwdhms])/g;
     let match;
     let realTime = 0
@@ -38,7 +37,7 @@ export default {
         realTime += value * parseInt(units[unit], 10);
     }
 
-    const text = content.split(' ').slice(1).join(' ')
+    const text = content[1]
     
     const reminder = db.prepare(`INSERT INTO reminders (userId, text, dueTime) VALUES (?, ?, ?)`).run(user.id, text, Date.now() + realTime * 1000)
     SET('users', 'reminders', user.id, GET('users', 0, user.id).reminders + `:${reminder.lastInsertRowid}`)
