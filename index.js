@@ -39,6 +39,15 @@ const client = new Client({
   ]
 });
 
+// --- Configure these ---
+// Replace with the channel ID to watch
+const IMAGE_WATCH_CHANNEL_ID = '1408531606129348621';
+// Replace with an array of user IDs that should trigger the reaction
+const IMAGE_TRIGGER_USER_IDS = new Set(['409711012267425792']);
+// Emoji to react with (Unicode or custom like '<:name:id>')
+const IMAGE_REACTION_EMOJI = '<:MITIK:1458896136944222258>';
+// ----------------------
+
 
 client.on(Events.MessageCreate, async (message) => {
   if (message.author.bot || !message.content.startsWith(PREFIX)) return;
@@ -99,6 +108,26 @@ setInterval(async () => {
 client.once(Events.ClientReady, (c) => {
   console.log(`slip initiated: ${c.user.tag}`);
   client.user.setActivity('Jane Remover', { type: ActivityType.Listening})
+});
+
+// React with an emoji when certain users post images in a specific channel
+client.on(Events.MessageCreate, async (message) => {
+  try {
+    if (message.author.bot) return;
+    if (message.channel.id !== IMAGE_WATCH_CHANNEL_ID) return;
+    if (!IMAGE_TRIGGER_USER_IDS.has(message.author.id)) return;
+    if (!message.attachments || message.attachments.size === 0) return;
+
+    const hasImage = [...message.attachments.values()].some(att => {
+      const ct = att.contentType;
+      if (ct && ct.startsWith('image')) return true;
+      const name = att.name || att.url || '';
+      return /\.(png|jpe?g|gif|webp|bmp|svg)$/i.test(name);
+    });
+    if (!hasImage) return;
+
+    await message.react(IMAGE_REACTION_EMOJI);
+  } catch (err) { console.error('oughhhh', err); }
 });
 
 client.login(process.env.TOKEN);
