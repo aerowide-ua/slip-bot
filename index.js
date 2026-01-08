@@ -53,6 +53,9 @@ const COOL_PEOPLE = new Set([
 const MITIKKKK = '<:MITIK:1458896136944222258>';
 
 // ----------------------
+const MITIK_CERTIFIED = new Set([
+  '1458903461918670858',
+]);
 
 
 client.on(Events.MessageCreate, async (message) => {
@@ -121,7 +124,12 @@ client.on(Events.MessageCreate, async (message) => {
   try {
     if (message.author.bot) return;
     if (message.channel.id !== ARTWORK_CHANNEL) return;
-    if (!COOL_PEOPLE.has(message.author.id)) return;
+    let member = message.member;
+    if (!member && message.guild) {
+      try { member = await message.guild.members.fetch(message.author.id); } catch (e) { /* ignore */ }
+    }
+    const hasRole = !!member && member.roles && member.roles.cache && [...member.roles.cache.values()].some(r => ARTWORK_TRIGGER_ROLE_IDS.has(r.id));
+    if (!COOL_PEOPLE.has(message.author.id) && !hasRole) return;
     if (!message.attachments || message.attachments.size === 0) return;
 
     const hasImage = [...message.attachments.values()].some(att => {
