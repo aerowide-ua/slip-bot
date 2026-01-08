@@ -39,13 +39,19 @@ const client = new Client({
   ]
 });
 
-// --- Configure these ---
-// Replace with the channel ID to watch
-const IMAGE_WATCH_CHANNEL_ID = '1408531606129348621';
-// Replace with an array of user IDs that should trigger the reaction
-const IMAGE_TRIGGER_USER_IDS = new Set(['409711012267425792']);
-// Emoji to react with (Unicode or custom like '<:name:id>')
-const IMAGE_REACTION_EMOJI = '<:MITIK:1458896136944222258>';
+const ARTWORK_CHANNEL = '1257267472625832046';
+const COOL_PEOPLE = new Set([
+  '409711012267425792', // ts so me
+  '1310685893660639245', // yurinator 3000
+  '787557122362834945', // galofuck
+  '584814499563831305', // boss rush 3 free download
+  '1385976742358941756', // burger
+  '842000448025657346', // doe deer
+  '1170741328930406423', // weeb
+  '702270843148959815', // gd thumbnail olympics 727x gold
+]);
+const MITIKKKK = '<:MITIK:1458896136944222258>';
+
 // ----------------------
 
 
@@ -110,12 +116,12 @@ client.once(Events.ClientReady, (c) => {
   client.user.setActivity('Jane Remover', { type: ActivityType.Listening})
 });
 
-// React with an emoji when certain users post images in a specific channel
+// MITIK react in artwork
 client.on(Events.MessageCreate, async (message) => {
   try {
     if (message.author.bot) return;
-    if (message.channel.id !== IMAGE_WATCH_CHANNEL_ID) return;
-    if (!IMAGE_TRIGGER_USER_IDS.has(message.author.id)) return;
+    if (message.channel.id !== ARTWORK_CHANNEL) return;
+    if (!COOL_PEOPLE.has(message.author.id)) return;
     if (!message.attachments || message.attachments.size === 0) return;
 
     const hasImage = [...message.attachments.values()].some(att => {
@@ -126,7 +132,7 @@ client.on(Events.MessageCreate, async (message) => {
     });
     if (!hasImage) return;
 
-    await message.react(IMAGE_REACTION_EMOJI);
+    await message.react(MITIKKKK);
   } catch (err) { console.error('oughhhh', err); }
 });
 
