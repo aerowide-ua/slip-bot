@@ -128,7 +128,7 @@ client.on(Events.MessageCreate, async (message) => {
     if (!member && message.guild) {
       try { member = await message.guild.members.fetch(message.author.id); } catch (e) { /* ignore */ }
     }
-    const hasRole = !!member && member.roles && member.roles.cache && [...member.roles.cache.values()].some(r => ARTWORK_TRIGGER_ROLE_IDS.has(r.id));
+    const hasRole = !!member && member.roles && member.roles.cache && [...member.roles.cache.values()].some(r => MITIK_CERTIFIED.has(r.id));
     if (!COOL_PEOPLE.has(message.author.id) && !hasRole) return;
     if (!message.attachments || message.attachments.size === 0) return;
 
