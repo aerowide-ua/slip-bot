@@ -16,7 +16,9 @@ async function loadCommands(dir) {
       slashCommands.push({
         name: cmd.name,
         description: cmd.description,
-        options: cmd.options || []
+        options: cmd.options || [],
+        integration_types: [0, 1],
+        contexts: [0, 1, 2]
       });
     }
   }
@@ -30,7 +32,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
   try {
     console.log(`deploying ${slashCommands.length} sliplings...`);
     await rest.put(
-      Routes.applicationCommands(process.env.APP),  // Changed from applicationGuildCommands
+      Routes.applicationCommands(process.env.APP), 
       { body: slashCommands }
     );
   } catch (error) {
