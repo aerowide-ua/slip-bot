@@ -30,7 +30,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
   try {
     console.log(`deploying ${slashCommands.length} sliplings...`);
     await rest.put(
-      Routes.applicationGuildCommands(process.env.APP, process.env.GUILD),
+      Routes.applicationCommands(process.env.APP),  // Changed from applicationGuildCommands
       { body: slashCommands }
     );
   } catch (error) {
