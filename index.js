@@ -35,13 +35,15 @@ const client = new Client({
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
-    GatewayIntentBits.GuildVoiceStates 
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.DirectMessageTyping
   ]
 });
 
 const ARTWORK_CHANNEL = '1257267472625832046';
 const COOL_PEOPLE = new Set([
-  '409711012267425792', // ts so me
+  '4711012267425792', // ts so me
   '1310685893660639245', // yurinator 3000
   '787557122362834945', // galofuck
   '584814499563831305', // boss rush 3 free download

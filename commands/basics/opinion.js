@@ -31,7 +31,7 @@ export default {
         "too busy hugging mocha try again later", ":33333333",
         "rubs my chin thoughtfully", "what am i supposed to do with this again",
         "have you tried putting it in rice", "@grok is this true",
-        "yayayayaya", "unmusique aoty", "have you tried asking mila",
+        "yayayayaya", "unmusique aoty",
         "can you pat me first tho", "pat me cro", "pulls out a sharpie and draws you patting me on a sticky note before giving it to you",
         "NO", "NAH", "nopenopenope",
 
